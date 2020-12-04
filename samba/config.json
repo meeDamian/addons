@@ -1,6 +1,6 @@
 {
   "name": "Samba share (w/external devices)",
-  "version": "9.3.1",
+  "version": "9.3.2",
   "slug": "samba",
   "description": "Expose Home Assistant folders with SMB/CIFS",
   "url": "https://github.com/meeDamian/home-assistant-samba",
