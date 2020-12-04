@@ -72,7 +72,7 @@ for partition in /dev/sd??; do
         chmod -R 0777 "${dir}"
     fi
 
-    mount "${partition}" "${dir}"
+    mount "${partition}" "${dir}/" || sudo mount "${partition}" "${dir}/"
 done
 
 sed -i "s|%%USERNAME%%|${username}|g" "${CONF}"
