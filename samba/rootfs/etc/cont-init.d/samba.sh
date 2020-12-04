@@ -60,16 +60,17 @@ addgroup "${username}"
 adduser -D -H -G "${username}" -s /bin/false "${username}"
 
 # Handle attached external storage devices
-mkdir -p /external
 for partition in /dev/sd??; do
     if [ ! -b "${partition}" ]; then
         bashio::log.warning "Device ${partition} found, but isn't a block device. Skipping."
         continue
     fi
 
-    dir="/external/$(blkid "${partition}" | sed -E 's|.*LABEL="([^"]*)".*|\1|')"
-    mkdir -p "${dir}"
-    chmod -R 0777 "${dir}"
+    dir="/media/$(blkid "${partition}" | sed -E 's|.*LABEL="([^"]*)".*|\1|')"
+    if [ ! -e "${dir}" ]; then
+        mkdir -p "${dir}"
+        chmod -R 0777 "${dir}"
+    fi
 
     mount "${partition}" "${dir}"
 done
