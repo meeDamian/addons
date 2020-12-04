@@ -67,7 +67,7 @@ for partition in /dev/sd??; do
         continue
     fi
 
-    dir="/external/$(blkid -s LABEL -o value "${partition}")"
+    dir="/external/$(blkid "${partition}" | sed -E 's|.*LABEL="([^"]*)".*|\1|')"
     mkdir -p "${dir}"
     chmod -R 0777 "${dir}"
 
