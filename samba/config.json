@@ -1,9 +1,9 @@
 {
-  "name": "Samba share",
+  "name": "Samba share (w/external devices)",
   "version": "9.3.0",
   "slug": "samba",
   "description": "Expose Home Assistant folders with SMB/CIFS",
-  "url": "https://github.com/home-assistant/hassio-addons/tree/master/samba",
+  "url": "https://github.com/meeDamian/addons/tree/master/samba",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "startup": "services",
   "boot": "auto",
@@ -33,5 +33,7 @@
     "veto_files": ["str"],
     "compatibility_mode": "bool"
   },
-  "image": "homeassistant/{arch}-addon-samba"
+  "image": "homeassistant/{arch}-addon-samba",
+  "devices": ["/dev/sda1:/dev/sda1:rwm"],
+  "full_access": true
 }
