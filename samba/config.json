@@ -1,6 +1,6 @@
 {
   "name": "Samba share (w/external devices)",
-  "version": "9.3.5",
+  "version": "9.3.6",
   "slug": "samba",
   "description": "Expose Home Assistant folders with SMB/CIFS",
   "url": "https://github.com/meeDamian/home-assistant-samba",
@@ -9,7 +9,7 @@
   "boot": "auto",
   "init": false,
   "host_network": true,
-  "map": ["config:rw", "ssl:rw", "addons:rw", "share:rw", "backup:rw", "media:rw", "external:rw"],
+  "map": ["config:rw", "ssl:rw", "addons:rw", "share:rw", "backup:rw", "media:rw"],
   "options": {
     "workgroup": "WORKGROUP",
     "username": "homeassistant",
