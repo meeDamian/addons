@@ -59,21 +59,12 @@ password=$(bashio::config 'password')
 addgroup "${username}"
 adduser -D -H -G "${username}" -s /bin/false "${username}"
 
-# Handle attached external storage devices
-for partition in /dev/sd??; do
-    if [ ! -b "${partition}" ]; then
-        bashio::log.warning "Device ${partition} found, but isn't a block device. Skipping."
-        continue
-    fi
-
-    dir="/media/$(blkid "${partition}" | sed -E 's|.*LABEL="([^"]*)".*|\1|')"
-    if [ ! -e "${dir}" ]; then
-        mkdir -p "${dir}"
-        chmod -R 0777 "${dir}"
-    fi
-
-    mount "${partition}" "${dir}/" || sudo mount "${partition}" "${dir}/"
-done
+# Handle attached external storage device
+if [ -b /dev/sda1 ]; then
+    mkdir -p /external/
+    chmod -R 0777 /external/
+    mount /dev/sda1 /external/
+fi
 
 sed -i "s|%%USERNAME%%|${username}|g" "${CONF}"
 # shellcheck disable=SC1117
